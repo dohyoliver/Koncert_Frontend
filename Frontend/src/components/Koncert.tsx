@@ -9,7 +9,7 @@ interface Concert {
     elmarad_e: boolean;
 }
 
-function Home() {
+function Koncert() {
     const [concerts, setConcerts] = useState<Concert[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
@@ -21,17 +21,17 @@ function Home() {
                 elmarad_e: true
             });
             if (response.status !== 200) {
-                throw new Error("Failed to delay concert.");
+                throw new Error("A koncert elhalasztása nem sikerült.");
             }
             setConcerts((prevConcerts) =>
                 prevConcerts.map((concert) =>
                     concert.id === id ? { ...concert, elmarad_e: true } : concert
                 )
             );
-            setSuccessMessage("Concert delayed successfully.");
+            setSuccessMessage("A koncert sikeresen elhalasztva.");
             setError(null);
         } catch (err) {
-            setError(`${err} Failed to delay concert.`);
+            setError(`${err} A koncert elhalasztása nem sikerült.`);
             setSuccessMessage(null);
         }
     };
@@ -42,11 +42,11 @@ function Home() {
             try {
                 const response = await axios.get("http://localhost:3000/koncert");
                 if (response.status !== 200) {
-                    throw new Error("Failed to fetch concerts.");
+                    throw new Error("A koncertek betöltése nem sikerült.");
                 }
                 setConcerts(response.data);
             } catch (err) {
-                setError(`${err} Failed to load concerts.`);
+                setError(`${err} A koncertek betöltése nem sikerült.`);
             } finally {
                 setLoading(false);
             }
@@ -59,7 +59,7 @@ function Home() {
         <div className="container">
             <div className="row">
                 <h2>Koncertek </h2>
-                {loading && <p>Loading concerts...</p>}
+                {loading && <p>Koncertek betöltése...</p>}
                 
                
                 {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
@@ -67,12 +67,12 @@ function Home() {
             
                 {error && <p style={{ color: "red" }}>{error}</p>}
 
-                {concerts.length === 0 && !loading && <p>No concerts available.</p>}
+                {concerts.length === 0 && !loading && <p>Nincsenek koncertek</p>}
                 {concerts.map((concert) => (
                     <div className="col-sm-4 col-md-4 col-lg-4 mb-4 border" key={concert.id}>
                         <h2>{concert.fellepo}</h2>
                         <p>Kezdés: {concert.kezdesi_ido}</p>
-                        <p>Időtartam: {concert.idotartam} minutes</p>
+                        <p>Időtartam: {concert.idotartam} perc</p>
                         <p>Státusz: {concert.elmarad_e ? "Elmarad" : "Beütemezve"}</p>
                         <br />
                         <button
@@ -89,4 +89,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Koncert;

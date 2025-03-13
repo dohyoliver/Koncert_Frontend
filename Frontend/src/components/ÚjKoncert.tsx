@@ -9,7 +9,7 @@ interface Concert {
     elmarad_e: boolean;
 }
 
-function NewConcert({ onConcertAdded }: { onConcertAdded: () => void }) {
+function ÚjKoncert({ onConcertAdded }: { onConcertAdded: () => void }) {
     const [concert, setConcert] = useState<Concert>({
         fellepo: "",
         kezdesi_ido: "",
@@ -36,7 +36,7 @@ function NewConcert({ onConcertAdded }: { onConcertAdded: () => void }) {
         setSuccess(false);
 
         try {
-            // Ensure 'kezdesi_ido' is in the correct format
+          
             const formattedConcert = {
                 ...concert,
                 kezdesi_ido: concert.kezdesi_ido ? new Date(concert.kezdesi_ido).toISOString() : "",
@@ -120,4 +120,4 @@ function NewConcert({ onConcertAdded }: { onConcertAdded: () => void }) {
     );
 }
 
-export default NewConcert;
+export default ÚjKoncert;
