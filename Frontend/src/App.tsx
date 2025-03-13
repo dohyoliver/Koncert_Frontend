@@ -20,7 +20,7 @@ function App() {
           </nav>
         </header>
 
-        {activeSection === 'home' && <Koncert />}
+        {activeSection === 'koncert' && <Koncert />}
         {activeSection === 'felvetel' && <ÚjKoncert onConcertAdded={() => {}} />}
       </div>
 
