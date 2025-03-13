@@ -1,6 +1,6 @@
 
-import Home from "./components/Koncert";
-import NewConcert from "./components/ÚjKoncert";
+import Koncert from "./components/Koncert";
+import ÚjKoncert from "./components/ÚjKoncert";
 import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -20,8 +20,8 @@ function App() {
           </nav>
         </header>
 
-        {activeSection === 'home' && <Home />}
-        {activeSection === 'felvetel' && <NewConcert onConcertAdded={() => {}} />}
+        {activeSection === 'home' && <Koncert />}
+        {activeSection === 'felvetel' && <ÚjKoncert onConcertAdded={() => {}} />}
       </div>
 
    
